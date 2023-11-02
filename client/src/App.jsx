@@ -1,10 +1,10 @@
-import SignIn from './pages/sign-in.page';
+import ConfigRoutes from "./routes/routes"
+
 
 const App = () => {
   return (
     <>
-      <h1>Welcome to Blog App</h1>
-      <SignIn />
+      <ConfigRoutes />
     </>
   )
 }

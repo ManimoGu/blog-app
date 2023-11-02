@@ -7,6 +7,12 @@ exports.registerUser = async (req, res) => {
     const { firstname, lastname, password, email, username } = req.body;
     const salt = await genSalt(10);
     const hashedpassword = await hash(password, salt);
+
+    const existedUser = await User.findOne({ $or: [{username}, {email}] });
+    if (existedUser) {
+      return res.status(400).json({ message: 'User with this username already exists!'});
+    }
+
     const user = await User.create({
       firstname,
       lastname,
@@ -14,11 +20,11 @@ exports.registerUser = async (req, res) => {
       email,
       username,
     });
-    if (user) {
-      res.send("user added");
-    } else {
-      res.send("user not added");
+
+    if (!user) {
+      return res.status(404).json({ message: "user not added" });
     }
+    res.status(200).json({ message: "user added" });
   } catch (error) {
     console.log(error);
   }
