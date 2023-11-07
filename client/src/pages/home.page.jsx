@@ -1,9 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addUser } from "../redux/reducers/userReducer";
+import { addUser } from "../data/features/userSlice";
 const Home = () => {
   const users = useSelector((state) => state.userList.users);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    console.log('Use Effect called!');
+
+    return () => {
+      console.log('Component unmounted');
+    }
+    }, [])
 
   return (
     <div>

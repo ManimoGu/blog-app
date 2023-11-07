@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { Link } from 'react-router-dom'
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addUser } from "../data/features/userSlice";
 
 const SignUp = () => {
@@ -12,10 +12,13 @@ const SignUp = () => {
     password: "",
   });
 
+  const error = useSelector(state => state.userList.error)
+
   const handleChange = (e) => {
     const { value, name } = e.target;
     setUser({ ...user, [name]: value });
   };
+   
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -26,6 +29,9 @@ const SignUp = () => {
   return (
     <>
       <h2>Register</h2>
+      {
+        error && (<h1>{error}</h1>)
+      }
       <form onSubmit={handleSubmit}>
         <div>
           <input

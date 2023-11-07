@@ -1,18 +1,18 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export const addUser = createAsyncThunk("user/addUser", async (user) => {
-  return axios
-    .post("http://localhost:5000/register", user)
+export const addUser = createAsyncThunk("user/addUser", async (user, {rejectWithValue}) => {
+  return axios.post("http://localhost:5000/register", user)
     .then((res) => res.data)
-    .catch((err) => err);
+    .catch((err) => rejectWithValue(err.response.data.message));
 });
 
 const userSlice = createSlice({
   name: "user",
   initialState: {
     users: [],
-    status: "idle",
+    status: "",
+    error : ""
   },
   reducers: {},
   extraReducers: (builder) => {
@@ -24,8 +24,9 @@ const userSlice = createSlice({
         state.status = "fullfiled";
       })
       .addCase(addUser.rejected, (state, action) => {
+        state.error = action.payload
         state.status = "rejected";
-      });
+      })
   },
 });
 
