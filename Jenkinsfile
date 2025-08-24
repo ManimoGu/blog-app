@@ -34,7 +34,7 @@ pipeline {
             echo "clone, build, run completed successfully"
         }
         failure{
-            echo "clon, build, run failed"
+            echo "clone, build, run failed"
         }
     }
 }
