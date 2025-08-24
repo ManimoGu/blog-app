@@ -31,12 +31,12 @@ pipeline {
     }
     post {
         success{
-            mail to 'guennach.imane@gmail.com',
+            mail to: 'guennach.imane@gmail.com',
             subject: "Success",
             body: "clone build run completed successfully"
         }
         failure{
-             mail to 'guennach.imane@gmail.com',
+             mail to: 'guennach.imane@gmail.com',
             subject: "Success",
             body: "clone build run failed"
             
