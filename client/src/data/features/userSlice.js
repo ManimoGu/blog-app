@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export const addUser = createAsyncThunk("user/addUser", async (user, {rejectWithValue}) => {
-  return axios.post("http://localhost:5000/register", user)
+  return axios.post("http://16.171.36.160:5000/register", user)
     .then((res) => res.data)
     .catch((err) => rejectWithValue(err.response.data.message));
 });
