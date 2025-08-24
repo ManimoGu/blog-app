@@ -31,7 +31,7 @@ pipeline {
     }
     post {
         success{
-            echo "clone, build, run completed successfully"
+            echo "clone build run completed successfully"
         }
         failure{
             echo "clone build run failed"
