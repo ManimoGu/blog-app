@@ -23,7 +23,7 @@ const SignIn = () => {
     e.preventDefault();
 
     try {
-      const result = await axios.post("http://localhost:5000/login", user);
+      const result = await axios.post("http://16.171.36.160:5000/login", user);
       console.log(result);
 
       if (result.data.token) {
